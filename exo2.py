@@ -1,5 +1,5 @@
 import pandas as pd
-import matplotlib.pyplot as mlp
+import matplotlib.pyplot as plt 
 
 dfo = pd.read_csv('evaluation_scores.csv')
 df:pd.DataFrame = dfo.iloc[1:,2:]
@@ -23,8 +23,12 @@ print(dfo.describe())
 print(dfo['Year'].mul(2))
 
 #Data visualization
-for i in range(1,dfo['Name'].size):
-    dfo[dfo['Name'] == f'Student {i}'].plot(kind='line',x='Year',y=['Listening','Speaking','Reading','Writing'],title=f'Student {i} progression')
+fig,axes = plt.subplots(nrows=2,ncols=2)
 
-    mlp.show()
+dfo[dfo['Name'] == 'Student 1'].plot(ax=axes[0,0],kind='line',x='Year',y=['Listening','Speaking','Reading','Writing'],title='Student 1 progression')
+dfo[dfo['Name'] == 'Student 2'].plot(ax=axes[0,1],kind='line',x='Year',y=['Listening','Speaking','Reading','Writing'],title='Student 2 progression')
+dfo[dfo['Name'] == 'Student 3'].plot(ax=axes[1,0],kind='line',x='Year',y=['Listening','Speaking','Reading','Writing'],title='Student 3 progression')
+dfo[dfo['Name'] == 'Student 4'].plot(ax=axes[1,1],kind='line',x='Year',y=['Listening','Speaking','Reading','Writing'],title='Student 4 progression')
+
+plt.show()
 
